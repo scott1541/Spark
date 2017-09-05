@@ -1,0 +1,11 @@
+ID,Name,Gender,Marks
+1,Peter Smith,M,90
+2,John Gibson,M,80
+3,Emma Davids,F,55
+4,Mike Hunt,M,68
+5,Jasmine Opel,F,77
+6,Roman Bellic,M,25
+7,Linus Torvalds,M,120
+8,Lisa Flanders,F,99
+9,Alex McDonald,M,88
+10,Sophie Granger,F,109
