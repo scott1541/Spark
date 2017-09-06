@@ -1,0 +1,14 @@
+Regno,Subject,Marks
+1,Physics,45
+1,Chemistry,55
+1,Maths,35
+2,Physics,48
+2,Chemistry,40
+2,Maths,62
+3,Physics,70
+3,Chemistry,75
+4,Physics,67
+4,Chemistry,50
+4,Maths,80
+5,Physics,90
+5,Chemistry,69
