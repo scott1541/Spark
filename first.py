@@ -11,7 +11,7 @@ def double(num):
 
 Rdd = sc.parallelize(List1)
 Data1 = Rdd.collect()
-print(Data1)
+print(Data1)+
 
 Rdd2 = Rdd.map(double)
 

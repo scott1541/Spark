@@ -33,13 +33,3 @@ for key,value in data:
 
 
 
-
-#Rdd2 = Rdd1.reduceByKey(lambda x,y: x+y)
-
-#Data = Rdd2.collect()
-
-#print(Data[1])
-#for key,values in Data:
-#	print(key, "---", values)
-
-

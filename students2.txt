@@ -1,4 +1,3 @@
-Regno,Subject,Marks
 1,Physics,45
 1,Chemistry,55
 1,Maths,35
