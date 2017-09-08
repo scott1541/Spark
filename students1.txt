@@ -1,0 +1,10 @@
+1,Pete Smith,M,A,67
+2,Andy Adams,M,A,87
+3,Amy Pond,F,B,98
+4,Josie Green,F,A,72
+5,Edward Scissorhands,M,B,101
+6,Bruce Adams,M,A,45
+7,Alex McDonald,M,B,69
+8,Jim Bean,M,A,78
+9,Alan Simpson,M,B,87
+10,Jasmine Ferguson,F,B,36

@@ -2,13 +2,11 @@ from pyspark import SparkConf, SparkContext
 from pyspark.sql import *
 
 conf1 = SparkConf()
-conf1.setMaster("local")
-conf1.setAppName("Whatever program")
 
 sc = SparkContext(conf = conf1)
 sql = SQLContext(sc)
 
-Rdd1 = sc.textFile("students2.txt")
+Rdd1 = sc.textFile("file:///home/cloudera/Documents/students2.txt")
 records = Rdd1.map(lambda x: x.split(","))
 
 df1 = sql.createDataFrame(records)
@@ -34,4 +32,5 @@ z1.show()
 #df1.groupby()
 
 #print("Records for Chemistry or Physics: ", z.count())
+
 
