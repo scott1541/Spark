@@ -64,24 +64,32 @@ dfCategory.registerTempTable("Category")
 dfSubCat.registerTempTable("SubCategory")
 
 #Quantity sold 
-x = sqlC.sql("SELECT Sales.productid as ProductID, Product.name as Name, Sales.quantity as Quantity_Sold FROM Sales INNER JOIN Product ON Sales.productid=Product.productid ORDER BY Sales.quantity DESC")
+x = sqlC.sql("SELECT Product.name as Name, sum(Sales.quantity) as Quantity_Sold FROM Sales INNER JOIN Product ON Sales.productid=Product.productid GROUP BY name ORDER BY Quantity_Sold DESC")
 
 #No. of sales
-y = sqlC.sql("SELECT Sales.productid as ProductID, count(*) as Sales FROM Sales INNER JOIN Product ON Sales.productid=Product.productid GROUP BY Sales.productid ORDER BY count(*) DESC")
+y = sqlC.sql("SELECT Product.name as Name, count(*) as No_Sales FROM Sales INNER JOIN Product ON Sales.productid=Product.productid GROUP BY name ORDER BY No_Sales DESC")
 
-# Throws error
-#y2 = sqlC.sql("SELECT Product.productid, Product.name, (SELECT count(*) as Sales FROM Sales INNER JOIN Product ON Sales.productid=Product.productid GROUP BY Sales.productid) as No_Sales FROM Product ORDER BY No_Sales DESC")
+#Quantity sold per Subcategory
+z = sqlC.sql("SELECT subcat as SC_Name, sum(Sales.quantity) as Quantity_Sold FROM Sales INNER JOIN Product ON Sales.productid=Product.productid INNER JOIN (SELECT subcat, subid FROM SubCategory) sq2 ON (sq2.subid = Product.subid) GROUP BY subcat ORDER BY Quantity_Sold DESC")
 
-#Other attempts at queries
-#x2 = sqlC.sql("SELECT Sales.productid, Product.name, (SELECT count(*) as count FROM Sales INNER JOIN Product ON Sales.productid=Product.productid ORDER BY Sales.quantity DESC)")
-#z = sqlC.sql("SELECT * FROM Product WHERE value IN (SELECT Sales.productid as ProductID, Product.name as Name, #Sales.quantity as Quantity_Sold FROM Sales INNER JOIN Product ON Sales.productid=Product.productid ORDER BY #Sales.quantity DESC)") 
+#Quantity sold per category
+w = sqlC.sql("SELECT category as Cat_Name, sum(Sales.quantity) as Quantity_Sold FROM Sales INNER JOIN Product ON Sales.productid=Product.productid INNER JOIN (SELECT subcat, subid, categoryid FROM SubCategory) sq2 ON (sq2.subid = Product.subid) INNER JOIN (SELECT category, categoryid FROM Category) sq3 ON (sq3.categoryid = sq2.categoryid) GROUP BY category ORDER BY Quantity_Sold DESC")
+
+#Attempted using all subqueries but keeps throwing error...
+#x2 = sqlC.sql("SELECT category as Cat_Name, sum(Sales.quantity) as Quantity_Sold FROM Sales INNER JOIN (SELECT name, productid, subid FROM Product) sq1 ON (Sales.productid=sq1.productid) INNER JOIN (SELECT subcat, subid, categoryid FROM SubCategory) sq2 ON (sq2.subid = Product.subid) INNER JOIN (SELECT category, categoryid FROM Category) sq3 ON (sq3.categoryid = sq2.categoryid) GROUP BY category ORDER BY Quantity_Sold DESC")
 
 
 
-
-print("Sales Quantiy")
+print("Sales Quantity")
 print("====================")
 x.show()
 print("No. of Sales")
 print("====================")
 y.show()
+print("Quantity sold per Subcategory")
+print("====================")
+z.show()
+print("Quantity sold per Category")
+print("====================")
+w.show()
+
